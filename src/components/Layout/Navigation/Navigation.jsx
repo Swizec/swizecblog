@@ -7,7 +7,7 @@ import Logo from '../../Accessories/Logo'
 class TopNavigation extends Component {
   buildPageNodes() {
     const { pages } = this.props
-    let pageNodes = []
+    const pageNodes = []
 
     pages.edges.forEach(page => {
       pageNodes.push({

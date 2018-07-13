@@ -41,9 +41,11 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             context: {
               id: edge.node.id
             }
-          })
+          }) 
         })
       })
+      
+
       // Now, querying all wordpressPosts
       .then(() => {
         graphql(
@@ -94,6 +96,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               }
             })
           })
+          
+
           // ==== END POSTS ====
 
           // Create pages for each unique tag and category
@@ -112,6 +116,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               }
             })
           })
+          
+
 
           catSet.forEach(cat => {
             createPage({
@@ -122,12 +128,15 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               }
             })
           })
-          resolve()
+          
         })
       })
+      resolve()
+
     // === END TAGS ===
   })
 }
+
 
 exports.modifyWebpackConfig = ({ config, stage }) => {
   if (stage === 'build-javascript') {
