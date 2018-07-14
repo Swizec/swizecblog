@@ -7,8 +7,8 @@ const webpackLodashPlugin = require('lodash-webpack-plugin')
 // Will create pages for Wordpress pages (route : /{slug})
 // Will create pages for Wordpress posts (route : /{slug})
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+exports.createPages = ({ graphql, action }) => {
+  const { createPage } = action
   return new Promise((resolve, reject) => {
     // First, query all the pages on your WordPress
     graphql(
@@ -17,6 +17,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           allWordpressPage {
             edges {
               node {
+                
                 id
                 slug
                 status
@@ -41,11 +42,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             context: {
               id: edge.node.id
             }
-          }) 
+          })
         })
       })
-      
-
       // Now, querying all wordpressPosts
       .then(() => {
         graphql(
@@ -56,7 +55,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                   node {
                     id
                     slug
-                    modified
+                    modified                  
                     tags {
                       name
                     }
@@ -96,8 +95,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               }
             })
           })
-          
-
           // ==== END POSTS ====
 
           // Create pages for each unique tag and category
@@ -116,8 +113,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               }
             })
           })
-          
-
 
           catSet.forEach(cat => {
             createPage({
@@ -130,13 +125,11 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           })
           
         })
+        resolve()
       })
-      resolve()
-
     // === END TAGS ===
   })
 }
-
 
 exports.modifyWebpackConfig = ({ config, stage }) => {
   if (stage === 'build-javascript') {

@@ -13,8 +13,7 @@ class PostListing extends React.Component {
         
         excerpt: postEdge.node.excerpt,
         
-        
-        
+       
         authorName: postEdge.node.author.name,
         authorAvatarUrl: postEdge.node.author.avatar_urls.wordpress_96
       })
@@ -66,13 +65,11 @@ const PostListContainer = styled.div`
     top: 0;
     left: 0;
   }
-
   .featured-image {
     width: 600px;
     height: 200px;
     object-fit: cover;
   }
-
   .post-link {
     background: none !important;
     padding: 0 !important;

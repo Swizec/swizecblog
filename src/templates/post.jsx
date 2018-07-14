@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
@@ -10,7 +10,7 @@ import SEO from '../components/Accessories/SEO/SEO'
 import config from '../../data/SiteConfig'
 import TopNavigation from '../components/Layout/Navigation/Navigation'
 
-export default class PostTemplate extends React.Component {
+ class PostTemplate extends Component {
   render() {
     const { slug } = this.props.pathContext
     const postNode = this.props.data.wordpressPost
@@ -30,7 +30,7 @@ export default class PostTemplate extends React.Component {
         <PostContainer>
           <h1>{postNode.title} </h1>
           <MetaSection>
-            <img src={postNode.author.avatar_urls.wordpress_96} alt='avi' />
+            <img src={postNode.author.avatar_urls.wordpress_96} alt='' />
             <div className="info">
               <h4>by {postNode.author.name}</h4>
               <h5>
@@ -65,7 +65,6 @@ export default class PostTemplate extends React.Component {
 const PostContainer = styled.div`
   max-width: 900px;
   margin: 100px auto;
-
   .tags {
     display: flex;
     flex-flow: row;
@@ -94,6 +93,9 @@ const MetaSection = styled.div`
     margin-left: 2px;
   }
 `
+
+
+export default PostTemplate
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`

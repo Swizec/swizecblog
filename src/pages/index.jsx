@@ -45,24 +45,21 @@ const Divider = styled.div`
 const MainContentContainer = styled.main`
   width: 600px;
   margin: 50px auto;
-
   h1 {
     text-align: center;
     font-weight: 700;
     margin-bottom: 25px;
   }
-
   p {
     font-size: 16px;
     margin-bottom: 25px;
   }
-
   pre {
     background-color: grey;
   }
 `
 
-  /* eslint no-undef: "off" */
+/* eslint no-undef: "off" */
 export const pageQuery = graphql`
   query IndexQuery {
     allWordpressPost {

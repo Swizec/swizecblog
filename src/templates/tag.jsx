@@ -6,7 +6,6 @@ import config from '../../data/SiteConfig'
 import TopNavigation from '../components/Layout/Navigation/Navigation'
 import PostListing from '../components/Posts/PostListing/PostListing'
 
-
 export default class TagTemplate extends React.Component {
   render() {
     const tag = this.props.pathContext.id
@@ -27,18 +26,15 @@ export default class TagTemplate extends React.Component {
 const MainContentContainer = styled.main`
   width: 600px;
   margin: 50px auto;
-
   h1 {
     text-align: center;
     font-weight: 700;
     margin-bottom: 25px;
   }
-
   p {
     font-size: 16px;
     margin-bottom: 25px;
   }
-
   pre {
     background-color: grey;
   }
@@ -87,3 +83,4 @@ export const pageQuery = graphql`
     }
   }
 `
+
