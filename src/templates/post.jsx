@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
@@ -10,7 +10,7 @@ import SEO from '../components/Accessories/SEO/SEO'
 import config from '../../data/SiteConfig'
 import TopNavigation from '../components/Layout/Navigation/Navigation'
 
- class PostTemplate extends Component {
+export default class PostTemplate extends React.Component {
   render() {
     const { slug } = this.props.pathContext
     const postNode = this.props.data.wordpressPost
@@ -34,7 +34,7 @@ import TopNavigation from '../components/Layout/Navigation/Navigation'
             <div className="info">
               <h4>by {postNode.author.name}</h4>
               <h5>
-                {postNode.acf.date} in
+                
                 <Link
                   className="cat-link"
                   to={`catgory/${postNode.categories[0].name}`}
@@ -94,9 +94,6 @@ const MetaSection = styled.div`
   }
 `
 
-
-export default PostTemplate
-
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
   query PostById($id: String!) {
@@ -116,7 +113,7 @@ export const pageQuery = graphql`
       modified
       excerpt
       id
-      
+      ...wpPost
       categories {
         name
       }
@@ -135,4 +132,9 @@ export const pageQuery = graphql`
       }
     }
   }
+`
+export const LineUp = graphql`
+fragment wpPost on wordpress__POST {
+  id
+}
 `

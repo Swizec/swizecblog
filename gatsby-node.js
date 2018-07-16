@@ -7,8 +7,8 @@ const webpackLodashPlugin = require('lodash-webpack-plugin')
 // Will create pages for Wordpress pages (route : /{slug})
 // Will create pages for Wordpress posts (route : /{slug})
 
-exports.createPages = ({ graphql, action }) => {
-  const { createPage } = action
+exports.createPages = ({ graphql, boundActionCreators }) => {
+  const { createPage } = boundActionCreators
   return new Promise((resolve, reject) => {
     // First, query all the pages on your WordPress
     graphql(
@@ -17,7 +17,6 @@ exports.createPages = ({ graphql, action }) => {
           allWordpressPage {
             edges {
               node {
-                
                 id
                 slug
                 status
