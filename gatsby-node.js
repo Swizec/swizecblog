@@ -37,10 +37,19 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             const tags = [];
             const categories = [];
             const postTemplate = path.resolve(`./src/templates/post.jsx`);
+            const simplePostTemplate = path.resolve(
+                `./src/templates/simplepost.jsx`
+            );
             // We want to create a detailed page for each
             // post node. We'll just use the Wordpress Slug for the slug.
             // The Post ID is prefixed with 'POST_'
-            _.each(result.data.allWordpressPost.edges, edge => {
+            console.log(
+                "----- DOING WORDPRESS ---- ",
+                result.data.allWordpressPost.edges.length
+            );
+
+            result.data.allWordpressPost.edges.forEach(edge => {
+                console.log("BOOM", edge.node.slug);
                 // grab all the tags and categories for later use
                 edge.node.tags.forEach(tag => {
                     tags.push(tag.name);
@@ -49,9 +58,11 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                     categories.push(category.name);
                 });
 
+                console.log("CREATING PAGE FOR", edge.node.slug);
+
                 createPage({
                     path: `/${edge.node.slug}`,
-                    component: slash(postTemplate),
+                    component: slash(simplePostTemplate),
                     context: {
                         id: edge.node.id
                     }
